@@ -6,6 +6,8 @@ import org.springframework.context.ConfigurableApplicationContext;
 import ru.codis.codis.domain.Task;
 import ru.codis.codis.repo.TaskRepo;
 
+import java.util.Optional;
+
 @SpringBootApplication
 public class CodisApplication {
 
@@ -13,10 +15,8 @@ public class CodisApplication {
 		ConfigurableApplicationContext context = SpringApplication.run(CodisApplication.class, args);
 		TaskRepo taskRepo = context.getBean(TaskRepo.class);
 
-		Iterable<Task> tasks = taskRepo.findAll();
-		for (Task task : tasks) {
-			System.out.println(task);
-		}
+		Optional<Task> tasks = taskRepo.findById(1l);
+		System.out.println(tasks.get().getDescription());
 	}
 
 }
