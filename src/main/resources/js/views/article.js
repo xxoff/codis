@@ -1,4 +1,4 @@
-define(function (rating, isIdea, author, data) {
+define(function (rating, author, date) {
     var imgTemplate = function (obj) {
         return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
     };
@@ -72,7 +72,7 @@ define(function (rating, isIdea, author, data) {
                                     id: "ratingValue"
                                 },
                                 {
-                                    label: author + " " + data,
+                                    label: author + " " + date,
                                     view: "label",
                                     width: 200,
                                     height: 30,
