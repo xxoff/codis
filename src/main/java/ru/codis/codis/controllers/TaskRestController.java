@@ -4,10 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.codis.codis.domain.Task;
 import ru.codis.codis.repo.TaskRepo;
 
@@ -26,10 +23,10 @@ public class TaskRestController extends AbstractRestController<Task, TaskRepo> {
     @Autowired
     private TaskRepo taskRepository;
 
-    @GetMapping
-    public ResponseEntity<String> home() {
-        return ResponseEntity.ok("Hello!");
-    }
+//    @GetMapping
+//    public void home() {
+//        //return ResponseEntity.ok("Hello!");
+//    }
 
     @GetMapping("/new")
     public ResponseEntity<List<Task>> newest() {
@@ -39,7 +36,7 @@ public class TaskRestController extends AbstractRestController<Task, TaskRepo> {
     }
 
 
-    @GetMapping("/actual")
+    @RequestMapping(value = "/hot", method = RequestMethod.GET)
     public ResponseEntity<List<Task>> actual(@RequestParam(required = false) Integer pageNumber) {
         pageNumber = 0;
         List<Task> tasks = taskRepository.findAll();
