@@ -14,27 +14,31 @@ function buildRoute(view, id) {
 }
 
 require(
-    ['views/profile'],
-    function (profile) {
+    ['views/createIdea', 'views/hot'],
+    function (createIdea, hot) {
         var imgTemplate = function(obj){
             return '<img src="'+obj.src+'" class="content" alt="logo" width="20"/>'
         };
 
+        var logoImg = function(){
+            return '<img src="../sources/img/logo.png" alt="logo" width="22000"/>'
+        };
+
         webix.ready(function () {
             webix.ui({
-                container:"app",
-                width: document.body.clientWidth,
                 height: document.body.clientHeight,
-                id: "root",
+                width: document.body.clientWidth,
                 type: "space",
-                paddingX: 80,
-                paddingY: 60,
+                paddingX: 120,
                 rows: [
                     {
-                        type: "clean", cols: [
+                        cols: [
+                            {
+                               view: "button", type:"image"
+                            },
                             {
                                 view: "button", label: "Hot", click: function () {
-
+                                    routie("hot")
                                 }
                             },
                             {
@@ -48,16 +52,10 @@ require(
                         ],
                     },
                     {
-                        type: "wide", cols: [
+                        cols: [
                             {
                                 id: "news",
-                                gravity: 1.6180339887,
-                                type: "wide",
-                                rows: [
-                                    {template: "idea1", autoheight: true},
-                                    {template: "idea2", autoheight: true},
-                                    {template: "idea3", autoheight: true}
-                                ]
+                                gravity: 1.6180339887
                             },
                             {
                                 rows: [
@@ -68,9 +66,11 @@ require(
                                     },
                                     {
                                         view: "button", label: "Profile", click: function () {
-                                            routie("profile")
                                         }
-                                    }
+                                    },
+                                    {view: "button", label: "Create Idea", click: function () {
+                                        routie("createIdea")
+                                    }}
                                 ]
                             }
                         ]
@@ -80,6 +80,8 @@ require(
         });
 
         routie({
-            'profile': buildRoute(profile, "root")
+            '': routie("hot"),
+            'hot': buildRoute(hot, "news"),
+            'createIdea': buildRoute(createIdea, "news")
         })
     });
