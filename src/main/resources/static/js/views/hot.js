@@ -1,19 +1,9 @@
 define(
     function () {
-
-        // function parseJSON(data) {
-        //     return window.JSON && window.JSON.parse ? window.JSON.parse( data ) : (new Function("return " + data))();
-        // }
-        var obj;
-        webix.ajax("hot").then(function(data){
-            //var obj = parseJSON(data);
-             obj = JSON.parse(data.text());
-            console.log(obj);
-        });
-
+    debugger
         webix.protoUI({
             name: "article",
-            $init:function(config){
+            $init: function (config) {
                 var imgTemplate = function (obj) {
                     return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
                 };
@@ -25,15 +15,13 @@ define(
                                 icon: "wxi-dots",
                                 width: 35,
                                 height: 35,
-                                view: "icon",
-                                id: "type"
+                                view: "icon"
                             }, {
                                 label: "",
                                 view: "label",
                                 width: 465,
-                                height: 35,
-                                id: "articleName"
-                            },
+                                height: 35
+                            }
                         ]
                     },
                     {
@@ -41,22 +29,19 @@ define(
                             icon: "wxi-dots",
                             width: 35,
                             height: 180,
-                            view: "icon",
-                            id: "ornament"
+                            view: "icon"
                         }, {
                             rows: [{
                                 label: "",
                                 view: "label",
                                 width: 465,
-                                height: 100,
-                                id: "body"
+                                height: 100
                             },
                                 {
                                     label: "Tags",
                                     view: "button",
                                     width: 50,
-                                    height: 30,
-                                    id: "tags"
+                                    height: 30
 
                                 }, {
                                     cols: [{
@@ -64,8 +49,7 @@ define(
                                         type: "form",
                                         view: "button",
                                         width: 90,
-                                        height: 30,
-                                        id: "comments"
+                                        height: 30
                                     },
                                         {
                                             options: [
@@ -74,23 +58,20 @@ define(
                                             ],
                                             view: "radio",
                                             width: 180,
-                                            height: 10,
-                                            id: "rate"
+                                            height: 10
                                         },
 
                                         {
                                             label: config.rating,
                                             view: "label",
                                             width: 50,
-                                            height: 30,
-                                            id: "ratingValue"
+                                            height: 30
                                         },
                                         {
                                             label: config.author + " " + config.data,
                                             view: "label",
                                             width: 200,
-                                            height: 30,
-                                            id: "articleInfo"
+                                            height: 30
                                         }]
                                 }]
                         }]
@@ -99,10 +80,24 @@ define(
             }
         }, webix.ui.layout);
 
+
+        var newsArticles = [];
+        var xhr = webix.ajax().sync().get('hot');
+    debugger
+        //var obj = parseJSON(data);
+        var obj = JSON.parse(xhr.responseText);
+        for (var i = 0; i < obj.length; i++) {
+            newsArticles.push({
+                view: "article",
+                rating: obj[i].interest,
+                author: obj[i].author,
+                data: obj[i].date_of_creation
+            });
+        }
+
+
         return {
-            rows: [
-                {view: "article", rating: 12, author: "sdfsdf", data: "sgsdf"}
-            ]
+            rows: newsArticles
         }
     }
 );
