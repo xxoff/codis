@@ -14,8 +14,8 @@ function buildRoute(view, id) {
 }
 
 require(
-    [],
-    function () {
+    ['views/profile'],
+    function (profile) {
         var imgTemplate = function(obj){
             return '<img src="'+obj.src+'" class="content" alt="logo" width="20"/>'
         };
@@ -25,24 +25,54 @@ require(
                 container:"app",
                 width: document.body.clientWidth,
                 height: document.body.clientHeight,
+                id: "root",
                 type: "space",
+                paddingX: 80,
+                paddingY: 60,
                 rows: [
                     {
-                        type: "clean",
-                        cols: [
-                            {view:"button", type:"image", image:"sources/img/logo.png"},
-                            {view: "button", label: "Hot"},
-                            {view: "button", label: "Topical"},
-                            {gravity: 3}
-                        ]},
+                        type: "clean", cols: [
+                            {
+                                view: "button", label: "Hot", click: function () {
+
+                                }
+                            },
+                            {
+                                view: "button", label: "Topical", click: function () {
+
+                                }
+                            },
+                            {view: "button", label: "All"},
+                            {view: "button", label: "Interesting"},
+                            {gravity: 2.5}
+                        ],
+                    },
                     {
-                        type: "wide",
-                        cols: [
-                            {rows : [
-                                    {template: "idea1"},
-                                    {template: "idea2"}
-                                ]},
-                            {template: "auth"}
+                        type: "wide", cols: [
+                            {
+                                id: "news",
+                                gravity: 1.6180339887,
+                                type: "wide",
+                                rows: [
+                                    {template: "idea1", autoheight: true},
+                                    {template: "idea2", autoheight: true},
+                                    {template: "idea3", autoheight: true}
+                                ]
+                            },
+                            {
+                                rows: [
+                                    {
+                                        view: "button", label: "Authorization", click: function () {
+
+                                        }
+                                    },
+                                    {
+                                        view: "button", label: "Profile", click: function () {
+                                            routie("profile")
+                                        }
+                                    }
+                                ]
+                            }
                         ]
                     }
                 ]
@@ -50,5 +80,6 @@ require(
         });
 
         routie({
+            'profile': buildRoute(profile, "root")
         })
     });
