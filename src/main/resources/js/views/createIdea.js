@@ -1,8 +1,8 @@
 define(function () {
     return {
         rows: [
-            {template: "name"},
-            {template: "surname"}
+            {template: "asd"},
+            {template: "asd"}
         ]
     }
 });
