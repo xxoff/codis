@@ -1,12 +1,7 @@
-define(function () {
-    var rating = 0;
-    var isIdea = false;
-    var author = "";
-    var data = "";
+define(function (rating = 0, isIdea = false, author = "", data = "") {
     var imgTemplate = function (obj) {
         return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
-    }
-
+    };
 
     return {
         rows: [
@@ -24,15 +19,16 @@ define(function () {
                         width: 465,
                         height: 35,
                         id: "articleName"
-                    },
+                    }
                 ]
             },
             {
                 cols: [{
-                    icon: "wxi-dots",
+                    template: imgTemplate,
+                    data: {src: "resources/img/ornament.png"},
+                    autofit: true,
                     width: 35,
                     height: 180,
-                    view: "icon",
                     id: "ornament"
                 }, {
                     rows: [{

@@ -14,9 +14,6 @@ public class CodisApplication {
 	public static void main(String[] args) {
 		ConfigurableApplicationContext context = SpringApplication.run(CodisApplication.class, args);
 		TaskRepo taskRepo = context.getBean(TaskRepo.class);
-
-		Optional<Task> tasks = taskRepo.findById(1l);
-		System.out.println(tasks.get().getDescription());
 	}
 
 }
