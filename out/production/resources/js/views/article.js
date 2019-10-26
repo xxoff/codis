@@ -1,12 +1,7 @@
-define(function () {
-    var rating = 0;
-    var isIdea = false;
-    var author = "";
-    var data = "";
+define(function (rating = 0, isIdea = false, author = "", data = "") {
     var imgTemplate = function (obj) {
         return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
     };
-
 
     return {
         rows: [
@@ -69,7 +64,6 @@ define(function () {
                                     height: 10,
                                     id: "rate"
                                 },
-
                                 {
                                     label: rating,
                                     view: "label",

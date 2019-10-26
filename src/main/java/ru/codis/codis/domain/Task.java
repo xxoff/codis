@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
@@ -13,7 +12,8 @@ import java.sql.Timestamp;
 public class Task {
     @Id
     @GeneratedValue(strategy = GenerationType.TABLE)
-    @ToString.Exclude private Long id;
+    @ToString.Exclude
+    private Long id;
     private Integer author;
     private String name;
     private String description;
@@ -34,10 +34,10 @@ public class Task {
     }
 
     public static int compareByInterest(Task t1, Task t2) {
-        return t1.getInterest().compareTo(t2.getInterest());
+        return t1.interest.compareTo(t2.interest);
     }
 
     public static int compareByTime(Task t1, Task t2) {
-        return t1.getDate_of_creation().compareTo(t2.getDate_of_creation());
+        return t1.date_of_creation.compareTo(t2.date_of_creation);
     }
 }
