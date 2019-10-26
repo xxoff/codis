@@ -7,6 +7,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 public abstract class AbstractRestController<T, R extends JpaRepository<T, ?>> {
     protected R repo;
 
@@ -14,10 +16,10 @@ public abstract class AbstractRestController<T, R extends JpaRepository<T, ?>> {
         this.repo = repo;
     }
 
-    @GetMapping
-    public Page<T> list(@PageableDefault Pageable pageable) {
-        return repo.findAll(pageable);
-    }
+//    @GetMapping
+//    public List<T> list(@PageableDefault Pageable pageable) {
+//        return repo.findAll();
+//    }
 
     @GetMapping("{id}")
     public T getOne(@PathVariable("id") T obj) {
