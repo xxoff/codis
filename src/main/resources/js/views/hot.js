@@ -1,5 +1,10 @@
 define(
     function () {
+
+        webix.ajax("/hot").then(function(data){
+            console.log(data.text());
+        });
+
         webix.protoUI({
             name: "article",
             $init:function(config){
