@@ -1,8 +1,4 @@
-<<<<<<< HEAD
 define(function (rating = 0, isIdea = false, author = "", data = "") {
-=======
-define(function (rating, isIdea, author, data) {
->>>>>>> origin/GreenBeaver
     var imgTemplate = function (obj) {
         return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
     };
@@ -23,27 +19,16 @@ define(function (rating, isIdea, author, data) {
                         width: 465,
                         height: 35,
                         id: "articleName"
-<<<<<<< HEAD
                     }
-=======
-                    },
->>>>>>> origin/GreenBeaver
                 ]
             },
             {
                 cols: [{
-<<<<<<< HEAD
                     template: imgTemplate,
                     data: {src: "resources/img/ornament.png"},
                     autofit: true,
                     width: 35,
                     height: 180,
-=======
-                    icon: "wxi-dots",
-                    width: 35,
-                    height: 180,
-                    view: "icon",
->>>>>>> origin/GreenBeaver
                     id: "ornament"
                 }, {
                     rows: [{
@@ -79,10 +64,6 @@ define(function (rating, isIdea, author, data) {
                                     height: 10,
                                     id: "rate"
                                 },
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/GreenBeaver
                                 {
                                     label: rating,
                                     view: "label",
