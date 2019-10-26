@@ -16,11 +16,23 @@ function buildRoute(view, id) {
 require(
     [],
     function () {
+        var imgTemplate = function(obj){
+            return '<img src="'+obj.src+'" class="content" alt="logo" width="20"/>'
+        };
+        
         webix.ready(function () {
             webix.ui({
                 container:"app",
                 width: document.body.clientWidth,
-                height: document.body.clientHeight
+                height: document.body.clientHeight,
+                type: "space",
+                rows: [
+                    {cols: [
+                            {template:imgTemplate, data:{src:"resources/img/logo.png"}, autofit: true},
+                            {view: "button", label: "Hot"},
+                            {view: "button", label: "Topical"}
+                        ]}
+                ]
             })
         });
 
