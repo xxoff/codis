@@ -1,8 +1,14 @@
 define(
     function () {
 
+        // function parseJSON(data) {
+        //     return window.JSON && window.JSON.parse ? window.JSON.parse( data ) : (new Function("return " + data))();
+        // }
+        var obj;
         webix.ajax("hot").then(function(data){
-            console.log(data.text());
+            //var obj = parseJSON(data);
+             obj = JSON.parse(data.text());
+            console.log(obj);
         });
 
         webix.protoUI({

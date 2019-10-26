@@ -29,8 +29,8 @@ public class TaskRestController extends AbstractRestController<Task, TaskRepo> {
     private TaskRepo taskRepository;
 
 //    @GetMapping
-//    public ResponseEntity<String> home() {
-//        return ResponseEntity.ok("Hello!");
+//    public void home() {
+//        //return ResponseEntity.ok("Hello!");
 //    }
 
     @GetMapping("/new")
