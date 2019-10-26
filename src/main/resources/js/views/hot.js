@@ -1,13 +1,9 @@
 define(
     function () {
-
-        webix.ajax("/hot").then(function(data){
-            console.log(data.text());
-        });
-
+        debugger
         webix.protoUI({
             name: "article",
-            $init:function(config){
+            $init: function (config) {
                 var imgTemplate = function (obj) {
                     return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
                 };
@@ -16,41 +12,38 @@ define(
                     {
                         cols: [
                             {
-                                icon: "wxi-dots",
+                                template: imgTemplate,
+                                data: {src: "resources/img/idea.png"},
+                                autofit: true,
                                 width: 35,
                                 height: 35,
-                                view: "icon",
-                                id: "type"
                             }, {
                                 label: "",
                                 view: "label",
                                 width: 465,
-                                height: 35,
-                                id: "articleName"
-                            },
+                                height: 35
+                            }
                         ]
                     },
                     {
                         cols: [{
-                            icon: "wxi-dots",
+                            template: imgTemplate,
+                            data: {src: "resources/img/ornament.png"},
+                            autofit: true,
                             width: 35,
                             height: 180,
-                            view: "icon",
-                            id: "ornament"
                         }, {
                             rows: [{
                                 label: "",
                                 view: "label",
                                 width: 465,
-                                height: 100,
-                                id: "body"
+                                height: 100
                             },
                                 {
                                     label: "Tags",
                                     view: "button",
                                     width: 50,
-                                    height: 30,
-                                    id: "tags"
+                                    height: 30
 
                                 }, {
                                     cols: [{
@@ -58,8 +51,7 @@ define(
                                         type: "form",
                                         view: "button",
                                         width: 90,
-                                        height: 30,
-                                        id: "comments"
+                                        height: 30
                                     },
                                         {
                                             options: [
@@ -68,23 +60,20 @@ define(
                                             ],
                                             view: "radio",
                                             width: 180,
-                                            height: 10,
-                                            id: "rate"
+                                            height: 10
                                         },
 
                                         {
                                             label: config.rating,
                                             view: "label",
                                             width: 50,
-                                            height: 30,
-                                            id: "ratingValue"
+                                            height: 30
                                         },
                                         {
                                             label: config.author + " " + config.data,
                                             view: "label",
                                             width: 200,
-                                            height: 30,
-                                            id: "articleInfo"
+                                            height: 30
                                         }]
                                 }]
                         }]
@@ -93,10 +82,24 @@ define(
             }
         }, webix.ui.layout);
 
+
+        var newsArticles = [];
+        var xhr = webix.ajax().sync().get('hot');
+        debugger
+        //var obj = parseJSON(data);
+        var obj = JSON.parse(xhr.responseText);
+        for (var i = 0; i < obj.length; i++) {
+            newsArticles.push({
+                view: "article",
+                rating: obj[i].interest,
+                author: obj[i].author,
+                data: obj[i].date_of_creation
+            });
+        }
+
+
         return {
-            rows: [
-                {view: "article", rating: 12, author: "sdfsdf", data: "sgsdf"}
-            ]
+            rows: newsArticles
         }
     }
 );

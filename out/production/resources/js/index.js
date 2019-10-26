@@ -14,13 +14,13 @@ function buildRoute(view, id) {
 }
 
 require(
-    ['views/createIdea', 'views/hot'],
+    ['views/createIdea', 'views/hot', 'views/article'],
     function (createIdea, hot) {
-        var imgTemplate = function(obj){
-            return '<img src="'+obj.src+'" class="content" alt="logo" width="20"/>'
+        var imgTemplate = function (obj) {
+            return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
         };
 
-        var logoImg = function(){
+        var logoImg = function () {
             return '<img src="../sources/img/logo.png" alt="logo" width="22000"/>'
         };
 
@@ -34,7 +34,7 @@ require(
                     {
                         cols: [
                             {
-                               view: "button", type:"image"
+                                view: "button", type: "image"
                             },
                             {
                                 view: "button", label: "Hot", click: function () {
@@ -68,9 +68,11 @@ require(
                                         view: "button", label: "Profile", click: function () {
                                         }
                                     },
-                                    {view: "button", label: "Create Idea", click: function () {
-                                        routie("createIdea")
-                                    }}
+                                    {
+                                        view: "button", label: "Create Idea", click: function () {
+                                            routie("createIdea")
+                                        }
+                                    }
                                 ]
                             }
                         ]

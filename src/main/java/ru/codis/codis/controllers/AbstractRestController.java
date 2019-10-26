@@ -1,10 +1,7 @@
 package ru.codis.codis.controllers;
 
 import org.springframework.beans.BeanUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
 public abstract class AbstractRestController<T, R extends JpaRepository<T, ?>> {
