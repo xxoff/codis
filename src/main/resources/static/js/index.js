@@ -18,7 +18,6 @@ require(
     function () {
         webix.ready(function () {
             webix.ui({
-                template: "Bill"
             })
         });
 
