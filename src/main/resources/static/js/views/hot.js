@@ -1,6 +1,5 @@
 define(
     function () {
-    debugger
         webix.protoUI({
             name: "article",
             $init: function (config) {
@@ -12,24 +11,28 @@ define(
                     {
                         cols: [
                             {
-                                icon: "wxi-dots",
+                                template: imgTemplate,
+                                data: {src: "sources/img/idea-icon.png"},
+                                autofit: true,
                                 width: 35,
                                 height: 35,
-                                view: "icon"
+                                css: {"background":"transparent", "border":"transparent"}
                             }, {
                                 label: "",
                                 view: "label",
                                 width: 465,
-                                height: 35
+                                height: 35,
                             }
                         ]
                     },
                     {
                         cols: [{
-                            icon: "wxi-dots",
+                            template: imgTemplate,
+                            data: {src: "sources/img/ornament.png"},
+                            autofit: true,
                             width: 35,
                             height: 180,
-                            view: "icon"
+                            css: {"background":"transparent", "border":"transparent"}
                         }, {
                             rows: [{
                                 label: "",
@@ -83,8 +86,6 @@ define(
 
         var newsArticles = [];
         var xhr = webix.ajax().sync().get('hot');
-    debugger
-        //var obj = parseJSON(data);
         var obj = JSON.parse(xhr.responseText);
         for (var i = 0; i < obj.length; i++) {
             newsArticles.push({
@@ -95,9 +96,12 @@ define(
             });
         }
 
-
         return {
             rows: newsArticles
+            // rows: [
+            //     {view: "article", rating: 12, author:"1Hot", data:"sfd"},
+            //     {view: "article", rating: 14, author:"2Hot", data:"sfd"}
+            // ]
         }
     }
 );
