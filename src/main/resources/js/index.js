@@ -14,15 +14,10 @@ function buildRoute(view, id) {
 }
 
 require(
-    ['views/createIdea', 'views/hot', 'views/article'],
-    function (createIdea, hot) {
-        var imgTemplate = function (obj) {
-            return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
-        };
+    ['views/createIdea', 'views/hot', 'views/topical', 'views/all', 'views/interesting'],
+    function (createIdea, hot, topical, all, interesting) {
 
-        var logoImg = function () {
-            return '<img src="../sources/img/logo.png" alt="logo" width="22000"/>'
-        };
+        var firstLoad = true;
 
         webix.ready(function () {
             webix.ui({
@@ -30,11 +25,12 @@ require(
                 width: document.body.clientWidth,
                 type: "space",
                 paddingX: 120,
+                css: {"background":"#f2f2f2 "},
                 rows: [
                     {
                         cols: [
                             {
-                                view: "button", type: "image"
+                                view: "button", type: "image", image: "sources/img/logo.png"
                             },
                             {
                                 view: "button", label: "Hot", click: function () {
@@ -43,11 +39,19 @@ require(
                             },
                             {
                                 view: "button", label: "Topical", click: function () {
-
+                                    routie("topical")
                                 }
                             },
-                            {view: "button", label: "All"},
-                            {view: "button", label: "Interesting"},
+                            {
+                                view: "button", label: "All", click: function () {
+                                    routie("all")
+                                }
+                            },
+                            {
+                                view: "button", label: "Interesting", click: function () {
+                                    routie("interesting")
+                                }
+                            },
                             {gravity: 2.5}
                         ],
                     },
@@ -82,8 +86,16 @@ require(
         });
 
         routie({
-            '': routie("hot"),
+            '': function () {
+                if (firstLoad) {
+                    routie("hot");
+                    firstLoad = false;
+                }
+            },
             'hot': buildRoute(hot, "news"),
-            'createIdea': buildRoute(createIdea, "news")
+            'createIdea': buildRoute(createIdea, "news"),
+            'topical': buildRoute(topical, "news"),
+            'all': buildRoute(all, "news"),
+            'interesting': buildRoute(interesting, "news")
         })
     });
