@@ -28,12 +28,27 @@ public class TaskRestController extends AbstractRestController<Task, TaskRepo> {
     @Autowired
     private TaskRepo taskRepository;
 
-//    @GetMapping
-//    public void home() {
-//        //return ResponseEntity.ok("Hello!");
-//    }
+    @GetMapping("/hot")
+    public ResponseEntity<List<Task>> hot() {
+        List<Task> tasks = taskRepository.findAll();
+        for (Task task : tasks) {
+            task.setComments_this_day((task.getComments() * 1000000 / task.getDate_of_creation().getTime()));
+        }
+        tasks.sort(Task::compareBycommentsThisDay);
+        return ResponseEntity.ok(tasks);
+    }
 
-    @GetMapping("/new")
+    @GetMapping("/topical")
+    public ResponseEntity<List<Task>> topical() {
+        List<Task> tasks = taskRepository.findAll();
+        for (Task task : tasks) {
+            task.setComments_this_day(task.getComments() / 10l);
+        }
+        tasks.sort(Task::compareBycommentsThisDay);
+        return ResponseEntity.ok(tasks);
+    }
+
+    @GetMapping("/all")
     public ResponseEntity<List<Task>> newest() {
         List<Task> tasks = taskRepository.findAll();
         tasks.sort(Task::compareByTime);
@@ -41,17 +56,10 @@ public class TaskRestController extends AbstractRestController<Task, TaskRepo> {
     }
 
 
-    @RequestMapping(value = "/hot", method = RequestMethod.GET)
-    public ResponseEntity<List<Task>> actual(@RequestParam(required = false) Integer pageNumber) {
-        pageNumber = 0;
+    @RequestMapping(value = "/interesting", method = RequestMethod.GET)
+    public ResponseEntity<List<Task>> interesting(@RequestParam(required = false, defaultValue = "1", value = "pageId") Integer pageId) {
         List<Task> tasks = taskRepository.findAll();
         tasks.sort(Task::compareByInterest);
-//        List<Task> resultList = new ArrayList<>();
-//        for (int i = 0; i < 5; i++) {
-//            if (i < tasks.size()) {
-//                resultList.add(tasks.get(tasks.size() - i * pageNumber - 1));
-//            }
-//        }
         return ResponseEntity.ok(tasks);
     }
 }

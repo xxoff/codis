@@ -4,7 +4,6 @@ import lombok.Data;
 import lombok.ToString;
 
 import javax.persistence.*;
-import java.sql.Time;
 import java.sql.Timestamp;
 
 @Data
@@ -20,17 +19,20 @@ public class Task {
     private Double dificulty;
     private Integer interest;
     private Timestamp date_of_creation;
+    private Integer comments;
+    private Long comments_this_day;
 
     protected Task() {
     }
 
-    public Task(String name, String description, Double dificulty, Integer interest, Timestamp date_of_creation) {
+    public Task(Integer author, String name, String description, Double dificulty, Integer interest, Timestamp date_of_creation, Integer comments) {
         this.author = author;
         this.name = name;
         this.description = description;
         this.dificulty = dificulty;
         this.interest = interest;
         this.date_of_creation = date_of_creation;
+        this.comments = comments;
     }
 
     public static int compareByInterest(Task t1, Task t2) {
@@ -39,5 +41,9 @@ public class Task {
 
     public static int compareByTime(Task t1, Task t2) {
         return t1.getDate_of_creation().compareTo(t2.getDate_of_creation());
+    }
+
+    public static int compareBycommentsThisDay(Task t1, Task t2) {
+        return t1.getComments_this_day().compareTo(t2.getComments_this_day());
     }
 }

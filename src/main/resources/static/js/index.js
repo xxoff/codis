@@ -84,6 +84,6 @@ require(
         routie({
             '': routie("hot"),
             'hot': buildRoute(hot, "news"),
-            'createIdea': buildRoute(createIdea, "news")
+            'createIdea': buildRoute(createIdea, "news"),
         })
     });
