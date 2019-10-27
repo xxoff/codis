@@ -36,7 +36,7 @@ public class Task {
     }
 
     public static int compareByInterest(Task t1, Task t2) {
-        return t1.getInterest().compareTo(t2.getInterest());
+        return -1 * t1.getInterest().compareTo(t2.getInterest());
     }
 
     public static int compareByTime(Task t1, Task t2) {
