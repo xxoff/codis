@@ -7,6 +7,7 @@ define(
                     return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
                 };
 
+                this.$view.className += " article-template";
                 config.rows = [
                     {
                         cols: [
@@ -16,92 +17,117 @@ define(
                                 autofit: true,
                                 width: 35,
                                 height: 35,
-                                css: {"background":"transparent", "border":"transparent"}
-                            }, {
-                                label: "",
-                                view: "label",
+                                css: "transparent-image"
+                            },
+                            {
+                                width: 17
+                            },
+                            {
+                                template: config.header,
                                 width: 465,
                                 height: 35,
+                                css: "article-header"
                             }
                         ]
                     },
                     {
-                        cols: [{
-                            template: imgTemplate,
-                            data: {src: "sources/img/ornament.png"},
-                            autofit: true,
-                            width: 35,
-                            height: 180,
-                            css: {"background":"transparent", "border":"transparent"}
-                        }, {
-                            rows: [{
-                                label: "",
-                                view: "label",
-                                width: 465,
-                                height: 100
+                        cols: [
+                            {
+                                template: imgTemplate,
+                                data: {src: "sources/img/ornament.png"},
+                                autofit: true,
+                                width: 35,
+                                height: 180,
+                                css: "transparent-image"
                             },
-                                {
-                                    label: "Tags",
-                                    view: "button",
-                                    width: 50,
-                                    height: 30
-
-                                }, {
-                                    cols: [{
-                                        label: "Comments",
-                                        type: "form",
+                            {
+                                width: 17
+                            },
+                            {
+                                rows: [{
+                                    template: config.description,
+                                    width: 465,
+                                    height: 100,
+                                    css: "article-content"
+                                },
+                                    {
+                                        label: "Tags",
                                         view: "button",
-                                        width: 90,
+                                        width: 50,
                                         height: 30
                                     },
-                                        {
-                                            options: [
-                                                "Like",
-                                                "Dislike"
-                                            ],
-                                            view: "radio",
-                                            width: 180,
-                                            height: 10
-                                        },
+                                    {
+                                        cols: [
+                                            {
+                                                label: "Comments",
+                                                type: "form",
+                                                view: "button",
+                                                width: 90,
+                                                height: 30
+                                            },
+                                            {
+                                                options: [
+                                                    "Like",
+                                                    "Dislike"
+                                                ],
+                                                view: "radio",
+                                                width: 180,
+                                                height: 10
+                                            },
 
-                                        {
-                                            label: config.rating,
-                                            view: "label",
-                                            width: 50,
-                                            height: 30
-                                        },
-                                        {
-                                            label: config.author + " " + config.data,
-                                            view: "label",
-                                            width: 200,
-                                            height: 30
-                                        }]
-                                }]
-                        }]
+                                            {
+                                                label: config.rating,
+                                                view: "label",
+                                                width: 50,
+                                                height: 30
+                                            },
+                                            {
+                                                label: config.author + " " + config.data,
+                                                view: "label",
+                                                width: 200,
+                                                height: 30
+                                            }]
+                                    }]
+                            }]
                     }
                 ]
             }
         }, webix.ui.layout);
 
 
-        var newsArticles = [];
-        var xhr = webix.ajax().sync().get('hot');
-        var obj = JSON.parse(xhr.responseText);
-        for (var i = 0; i < obj.length; i++) {
-            newsArticles.push({
-                view: "article",
-                rating: obj[i].interest,
-                author: obj[i].author,
-                data: obj[i].date_of_creation
-            });
-        }
+        // var newsArticles = [];
+        // var xhr = webix.ajax().sync().get('hot');
+        // var obj = JSON.parse(xhr.responseText);
+        // for (var i = 0; i < obj.length; i++) {
+        //     newsArticles.push({
+        //         view: "article",
+        //         rating: obj[i].interest,
+        //         author: obj[i].author,
+        //         data: obj[i].date_of_creation
+        //     });
+        // }
 
         return {
-            rows: newsArticles
-            // rows: [
-            //     {view: "article", rating: 12, author:"1Hot", data:"sfd"},
-            //     {view: "article", rating: 14, author:"2Hot", data:"sfd"}
-            // ]
+            // rows: newsArticles
+            type: "wide",
+            rows: [
+                {
+                    view: "article",
+                    rating: 12,
+                    author: "1Hot",
+                    data: "sfd",
+                    header: "An Idea",
+                    description: "Many interesting letters asjbkjerkebrvklbwelrhvblehrbvlkwhevlksh"
+                },
+                {
+                    view: "article",
+                    rating: 14,
+                    author: "2Hot",
+                    data: "sfd",
+                    header: "Another Idea",
+                    description: "Many more interesting letters bla bla bla bla lorem ipsum asdf"
+                }
+            ]
         }
     }
 );

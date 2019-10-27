@@ -1,3 +1,26 @@
-.webix-button.webix-img-button {
-    background-image: url("../img/logo.png");
+.article-template {
+    background-color: #ffffff;
+}
+
+.transparent-image {
+    background: transparent;
+    border: transparent;
+}
+
+.article-content {
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom-color: #bdbdbd;
+    font-size: 19px;
+    color: #75758e;
+    horiz-align: left;
+    vertical-align: top;
+}
+
+.article-header {
+    border: transparent;
+    font-weight: bold;
+    font-size: 21px;
+    color: #000000;
 }
