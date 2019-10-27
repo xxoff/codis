@@ -40,7 +40,7 @@ public class Task {
     }
 
     public static int compareByTime(Task t1, Task t2) {
-        return t1.getDate_of_creation().compareTo(t2.getDate_of_creation());
+        return -1 * t1.getDate_of_creation().compareTo(t2.getDate_of_creation());
     }
 
     public static int compareBycommentsThisDay(Task t1, Task t2) {
