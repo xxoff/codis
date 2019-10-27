@@ -13,7 +13,7 @@ define(
                         cols: [
                             {
                                 template: imgTemplate,
-                                data: {src: "resources/img/idea.png"},
+                                data: {src: "sources/img/idea-icon.png"},
                                 autofit: true,
                                 width: 35,
                                 height: 35,
@@ -21,17 +21,19 @@ define(
                                 label: "",
                                 view: "label",
                                 width: 465,
-                                height: 35
+                                height: 35,
+                                css: {"background": "transparent", "border": "transparent"}
                             }
                         ]
                     },
                     {
                         cols: [{
                             template: imgTemplate,
-                            data: {src: "resources/img/ornament.png"},
+                            data: {src: "sources/img/ornament.png"},
                             autofit: true,
                             width: 35,
                             height: 180,
+                            css: {"background": "transparent", "border": "transparent"}
                         }, {
                             rows: [{
                                 label: "",

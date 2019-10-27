@@ -14,7 +14,7 @@ function buildRoute(view, id) {
 }
 
 require(
-    ['views/createIdea', 'views/hot', 'views/article'],
+    ['views/createIdea', 'views/hot'],
     function (createIdea, hot) {
         var imgTemplate = function (obj) {
             return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
