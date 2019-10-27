@@ -23,6 +23,10 @@ require(
             return '<img src="' + obj.src + '" class="content" alt="logo" width="200"/>'
         };
 
+        var imgTemplate2 = function (obj) {
+            return '<img src="' + obj.src + '" class="content" alt="logo" width="45"/>'
+        };
+
         webix.ready(function () {
             webix.ui({
                 height: document.body.clientHeight,
@@ -35,7 +39,7 @@ require(
                     {
                         cols: [
                             {
-                                template:imgTemplate,
+                                template: imgTemplate,
                                 data: {src: "sources/img/logo.png"},
                                 autoheight: true,
                                 autowidth: true,
@@ -47,7 +51,7 @@ require(
                                 }
                             },
                             {
-                                width: 50
+                                width: 30
                             },
                             {
                                 view: "button", label: "Topical", width: 74, click: function () {
@@ -60,11 +64,23 @@ require(
                                 }
                             },
                             {
-                                view: "button", label: "Interesting",  width: 100, click: function () {
+                                view: "button", label: "Interesting", width: 100, click: function () {
                                     routie("interesting")
                                 }
                             },
-                            {width: 575}
+                            {width: 290},
+                            {
+                                template: imgTemplate2,
+                                data: {src: "sources/img/loopa.png"},
+                                css: "transparent-image",
+                                width: 70
+                            },
+                            {
+                                template: imgTemplate2,
+                                data: {src: "sources/img/face.png"},
+                                css: "transparent-image",
+                                width: 160
+                            }
                         ]
                     },
                     {
