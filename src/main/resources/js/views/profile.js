@@ -15,14 +15,14 @@ define(function () {
                     },
                     {
                         view: "template",
-                        template: "Username",
+                        template: "pupptmstr",
                         width: 150
                     }
                 ]
             },
             {
                 view: "template",
-                template: "About",
+                template: "Frontend (Webix, JQuery) developer.",
                 width: 300,
                 height: 80
             },
@@ -36,7 +36,7 @@ define(function () {
                 },
                     {
                         view: "template",
-                        template: "0",
+                        template: "999+",
                         width: 20
                     }
                 ]
@@ -44,7 +44,7 @@ define(function () {
 
             {
                 view: "template",
-                template: "My git: git",
+                template: "My git: https://github.com/pupptmstr",
                 width: 200,
                 height: 25
             },
@@ -52,7 +52,7 @@ define(function () {
                 view: "toggle",
                 label: "Wanna teamwork",
                 width: 200,
-                value: "false"
+                value: "true"
             }
         ]
     }
