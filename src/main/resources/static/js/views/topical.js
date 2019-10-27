@@ -13,6 +13,7 @@ define(
                 description: obj[i].description,
                 header: obj[i].name
             });
+            newsArticles.push({height: 7})
         }
 
         return {
