@@ -9,15 +9,14 @@ define(
                 view: "article",
                 rating: obj[i].interest,
                 author: obj[i].author,
-                data: obj[i].date_of_creation
+                data: obj[i].date_of_creation,
+                description: obj[i].description,
+                header: obj[i].name
             });
         }
 
         return {
-        //     rows: [
-        //     {view: "article", rating: 12, author:"1Topical", data:"sfd"},
-        //     {view: "article", rating: 14, author:"2Topical", data:"sfd"}
-        // ]
+            type: "wide",
             rows: newsArticles
         }
     }

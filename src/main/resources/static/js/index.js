@@ -19,18 +19,23 @@ require(
 
         var firstLoad = true;
 
+        var imgTemplate = function (obj) {
+            return '<img src="' + obj.src + '" class="content" alt="logo" width="100"/>'
+        };
+
         webix.ready(function () {
             webix.ui({
                 height: document.body.clientHeight,
                 width: document.body.clientWidth,
                 type: "space",
                 paddingX: 120,
-                css: {"background":"#f2f2f2 "},
+                css: {"background":"#f2f2f2"},
                 rows: [
                     {
                         cols: [
                             {
-                                view: "button", type: "image", image: "sources/img/logo.png"
+                                template:imgTemplate,
+                                data: {src: "sources/img/logo.png"}
                             },
                             {
                                 view: "button", label: "Hot", click: function () {

@@ -62,4 +62,14 @@ public class TaskRestController extends AbstractRestController<Task, TaskRepo> {
         tasks.sort(Task::compareByInterest);
         return ResponseEntity.ok(tasks);
     }
+
+    @PostMapping("/add")
+    public ResponseEntity<Task> add(@RequestBody Task task) {
+        task.setDate_of_creation(new Timestamp(System.currentTimeMillis()));
+        task.setAuthor(4);
+        task.setInterest(0);
+        task.setComments(0);
+        task.setComments_this_day(0l);
+        return ResponseEntity.ok(repo.save(task));
+    }
 }
