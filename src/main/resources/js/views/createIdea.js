@@ -2,11 +2,9 @@ define(function () {
     return {
         rows: [
             {
-                label: "Create idea",
-                view: "label",
-                width: 500,
-                name: "label",
-                align: "center"
+                view: "template",
+                template: "Create idea",
+                type: "header"
             },
             {
                 view: "text",
