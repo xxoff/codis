@@ -8,7 +8,7 @@ define(function () {
                 cols: [
                     {
                         template: imgTemplate,
-                        data: {src: "sources/img/logo.png"},
+                        data: {src: "sources/img/smile.png"},
                         autofit: true,
                         width: 50,
                         height: 50,
@@ -29,7 +29,7 @@ define(function () {
             {
                 cols: [{
                     template: imgTemplate,
-                    data: {src: "sources/img/rating.png"},
+                    data: {src: "sources/img/star.png"},
                     autofit: true,
                     width: 40,
                     height: 40,
