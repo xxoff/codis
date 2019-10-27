@@ -24,3 +24,20 @@
     font-size: 21px;
     color: #000000;
 }
+
+.main-background {
+    background: #f2f2f2;
+}
+
+.top-toolbar-btn{
+    font-family: SansSerif, serif;
+    color: #000000;
+}
+
+.divider {
+    border-top: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom-color: #bdbdbd;
+    background-color: transparent;
+}

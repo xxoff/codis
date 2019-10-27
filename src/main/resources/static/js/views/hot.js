@@ -6,6 +6,23 @@ define(
                 var imgTemplate = function (obj) {
                     return '<img src="' + obj.src + '" class="content" alt="logo" width="20"/>'
                 };
+                var obj = function () {
+                    if(config.author === 1) {
+                        return "Pete";
+                    }
+                    if(config.author === 2) {
+                        return "Vasya";
+                    }
+                    if(config.author === 3) {
+                        return "Vova";
+                    }
+                    if(config.author === 4) {
+                        return "Tima";
+                    }
+                    if(config.author === 5) {
+                        return "Lyonya";
+                    }
+                }
 
                 this.$view.className += " article-template";
                 config.rows = [
@@ -24,7 +41,7 @@ define(
                             },
                             {
                                 template: config.header,
-                                width: 465,
+                                width: 700,
                                 height: 35,
                                 css: "article-header"
                             }
@@ -46,7 +63,7 @@ define(
                             {
                                 rows: [{
                                     template: config.description,
-                                    width: 465,
+                                    width: 700,
                                     height: 100,
                                     css: "article-content"
                                 },
@@ -74,17 +91,10 @@ define(
                                                 width: 180,
                                                 height: 10
                                             },
-
                                             {
-                                                label: config.rating,
+                                                label: "Rating: " + config.rating + " " + "Author: " + obj(),
                                                 view: "label",
-                                                width: 50,
-                                                height: 30
-                                            },
-                                            {
-                                                label: config.author + " " + config.data,
-                                                view: "label",
-                                                width: 200,
+                                                width: 400,
                                                 height: 30
                                             }]
                                     }]
@@ -107,6 +117,7 @@ define(
                 description: obj[i].description,
                 header: obj[i].name
             });
+            newsArticles.push({height: 7})
         }
 
         return {
